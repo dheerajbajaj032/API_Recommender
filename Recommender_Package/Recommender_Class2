@@ -1,0 +1,21 @@
+from flask import Flask, request
+from flask_restful import Resource, Api
+from json import dumps
+from flask import jsonify
+import Learning_Model
+from flask import request
+
+app = Flask(__name__)
+api = Api(app)
+
+
+class API_Name(Resource):
+
+    @app.route('/predict')
+    def get(self):
+        a = Learning_Model.Main_Model('ml-100k/u2.base', 'ml-100k/u2.base').create()
+        return str(a)
+
+
+if __name__ == '__main__':
+    app.run(port='5002')
